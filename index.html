@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./src/index.css">
+  <title>SBC.ImageMaker</title>
+</head>
+<body>
+  <div id="SBCast_instagram_content">
+    <div id="menu">
+      <label for="url">URL</label>
+      <input type="url" id="url" value="http://example.com/" class="savecontrol">
+      <button id="update">Rendering </button>
+      <button id="save">Save Image</button>
+    </div>
+    <div id="body">
+      <div id="base">
+        <img alt="" src="./res/logo.png" id="logo">
+        <img alt="" id="img">
+        <div id="qr"></div>
+      </div>
+    </div>
+  </div>
+  <script src="./node_modules/dom-to-image/dist/dom-to-image.min.js"></script>
+  <script src="./node_modules/qrcodejs/qrcode.min.js"></script>
+  <script src="./src/index.js"></script>
+</body>
+</html>
