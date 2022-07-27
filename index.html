@@ -14,12 +14,12 @@
         <label for="url">URL</label>
         <input type="url" id="url" value="http://example.com/" class="savecontrol">
         <label for="zoom">Zoom</label>
-        <input id="zoom" type="range" min="0.5" max="1" value="1" step="0.01">
+        <input id="zoom" class="savecontrol" type="range" min="0.5" max="1" step="0.01">
         <label for="xadjust">X Adjust</label>
-        <input id="xadjust" type="range" min="0" max="100" value="50" step="1">
-        <label for="yadjust">X Adjust</label>
-        <input id="yadjust" type="range" min="0" max="100" value="50" step="1">
-        <button type="reset">Reset</button>
+        <input id="xadjust" class="savecontrol" type="range" min="0" max="100" step="1">
+        <label for="yadjust">Y Adjust</label>
+        <input id="yadjust" class="savecontrol" type="range" min="0" max="100" step="1">
+        <button type="button" id="resetpos">Reset Position</button>
         <button type="button" id="update">Rendering </button>
         <button type="button" id="save">Save Image</button>
       </form>

@@ -1,5 +1,8 @@
 const defaultValues = {
-  "url": "http://example.com/"
+  "url": "http://example.com/",
+  "zoom": 1.0,
+  "xadjust": 50,
+  "yadjust": 50
 }
 
 
@@ -30,7 +33,15 @@ document.getElementById("url").addEventListener("change", (e) => {
   refresh();
 });
 
-["zoom", "xadjust", "yadjust"].forEach(v => document.getElementById(v).addEventListener("input", refreshzoom));
+Array.from(document.querySelectorAll("input[type=range]")).forEach(e => e.addEventListener("input", refreshzoom));
+
+document.getElementById("resetpos").addEventListener("click", (e) => {
+  Array.from(document.querySelectorAll("input[type=range]")).forEach((e) => {
+    e.value = defaultValues[e.id];
+    localStorage.setItem(e.id, e.value);
+  });
+  refreshzoom();
+});
 
 document.getElementById("update").addEventListener("click", (e) => {
   refresh();
