@@ -18,7 +18,7 @@ div#menu {
   padding: 8px;
 }
 
-div#menu > label, div#menu > input{
+div#menu > form > label, div#menu > form > input{
   display: block;
 }
 
@@ -34,6 +34,7 @@ div#body {
   aspect-ratio: 4 / 3;
   background: white;
   margin: auto;
+  overflow: hidden;
 }
 
 #logo{

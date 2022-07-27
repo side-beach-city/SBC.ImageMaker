@@ -2,6 +2,7 @@ const defaultValues = {
   "url": "http://example.com/"
 }
 
+
 window.addEventListener("load", (e) => {
   Array.from(document.getElementsByClassName("savecontrol")).forEach((e) => {   
     e.value = localStorage.getItem(e.id) ? localStorage.getItem(e.id) : (defaultValues[e.id] !== undefined ? defaultValues[e.id] : "");
@@ -29,6 +30,8 @@ document.getElementById("url").addEventListener("change", (e) => {
   refresh();
 });
 
+["zoom", "xadjust", "yadjust"].forEach(v => document.getElementById(v).addEventListener("input", refreshzoom));
+
 document.getElementById("update").addEventListener("click", (e) => {
   refresh();
 });
@@ -44,6 +47,13 @@ document.getElementById("save").addEventListener("click", async (e) => {
   dl.download="qrimage.png";
   dl.click();
 });
+
+function refreshzoom() {
+  const param = {};
+  ["zoom", "xadjust", "yadjust"].forEach(v => param[v] = document.getElementById(v).value);
+  console.log(`translate(${param['xadjust'] * -1}%, ${param['yadjust'] * -1}%) scale(${param['zoom']})`);
+  document.getElementById("img").style.transform = `translate(${param['xadjust'] * -1}%, ${param['yadjust'] * -1}%) scale(${param['zoom']})`;
+}
 
 function refresh() {
   const url = document.getElementById("url").value;
