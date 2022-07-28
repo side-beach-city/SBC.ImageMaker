@@ -8,30 +8,45 @@
   <title>SBC.ImageMaker</title>
 </head>
 <body>
-  <div id="SBCast_instagram_content">
-    <div class="menu">
-      <form>
-        <label for="instagram_url">URL</label>
-        <input type="url" id="instagram_url" value="http://example.com/" class="savecontrol">
-        <label for="instagram_zoom">Zoom</label>
-        <input id="instagram_zoom" class="savecontrol" type="range" min="0.5" max="1" step="0.01">
-        <label for="instagram_xadjust">X Adjust</label>
-        <input id="instagram_xadjust" class="savecontrol" type="range" min="0" max="100" step="1">
-        <label for="instagram_yadjust">Y Adjust</label>
-        <input id="instagram_yadjust" class="savecontrol" type="range" min="0" max="100" step="1">
-        <button type="button" id="instagram_resetpos">Reset Position</button>
-        <button type="button" id="instagram_update">Rendering </button>
-        <button type="button" id="instagram_save">Save Image</button>
-      </form>
+  <div class="tabs">
+    <input id="SBCast_instagram" type="radio" name="tab_item" checked>
+    <label class="tab_item" for="SBCast_instagram">Instagram用画像</label>
+    <input id="SBCast_youtube" type="radio" name="tab_item">
+    <label class="tab_item" for="SBCast_youtube">YouTube用画像</label>
+    
+    <div class="tab_content" id="SBCast_instagram_content">
+      <div>
+        <div class="menu">
+          <form>
+            <label for="instagram_url">URL</label>
+            <input type="url" id="instagram_url" value="http://example.com/" class="savecontrol">
+            <label for="instagram_zoom">Zoom</label>
+            <input id="instagram_zoom" class="savecontrol" type="range" min="0.5" max="1" step="0.01">
+            <label for="instagram_xadjust">X Adjust</label>
+            <input id="instagram_xadjust" class="savecontrol" type="range" min="0" max="100" step="1">
+            <label for="instagram_yadjust">Y Adjust</label>
+            <input id="instagram_yadjust" class="savecontrol" type="range" min="0" max="100" step="1">
+            <button type="button" id="instagram_resetpos">Reset Position</button>
+            <button type="button" id="instagram_update">Rendering </button>
+            <button type="button" id="instagram_save">Save Image</button>
+          </form>
+        </div>
+        <div class="body">
+          <div class="base" id="instagram_base">
+            <img alt="" src="./res/logo.png" id="instagram_logo">
+            <img alt="" src="./res/DropHere.png" id="instagram_img" data-role="image">
+            <div id="instagram_qr"></div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="body">
-      <div class="base" id="instagram_base">
-        <img alt="" src="./res/logo.png" id="instagram_logo">
-        <img alt="" src="./res/DropHere.png" id="instagram_img" data-role="image">
-        <div id="instagram_qr"></div>
+    <div class="tab_content" id="SBCast_youtube_content">
+      <div>
+        
       </div>
     </div>
   </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="./src/index.js"></script>

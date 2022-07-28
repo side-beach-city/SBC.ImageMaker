@@ -1,13 +1,59 @@
+:root {
+  --tabsize: 24px;
+}
+
 body{
   margin: 0;
   overflow: hidden;
 }
 
-div#SBCast_instagram_content {
-  display: flex;
-  flex-direction: row;
+.tabs {
+  margin-top: var(--tabsize);
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  margin: 0 auto;
 }
 
+/* tabs */
+.tab_item {
+  width: calc(100% / 2);
+  height: var(--tabsize);
+  border-bottom: 3px solid #5ab4bd;
+  background-color: #d9d9d9;
+  line-height: var(--tabsize);
+  font-size: 16px;
+  text-align: center;
+  color: #565656;
+  display: block;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+.tab_item:hover {
+  opacity: 0.75;
+}
+input[name="tab_item"] {
+  display: none;
+}
+.tab_content {
+  display: none;
+  clear: both;
+  overflow: hidden;
+}
+
+#SBCast_instagram:checked ~ #SBCast_instagram_content,
+#SBCast_youtube:checked ~ #SBCast_youtube_content {
+  display: block;
+}
+
+.tabs input:checked + .tab_item {
+  background-color: #5ab4bd;
+  color: #fff;
+}
+
+/* Content common */
 div.menu, div.body {
   padding: 0 8px;
   border-radius: 12px;
@@ -28,9 +74,16 @@ div.body {
   width: 100%;
 }
 
+/* #SBCast_instagram_content */
+div#SBCast_instagram_content > div {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - var(--tabsize) - 3px);
+}
+
 #instagram_base{
   position: relative;
-  height: 100vh;
+  height: 100%;
   aspect-ratio: 4 / 3;
   background: white;
   margin: auto;
