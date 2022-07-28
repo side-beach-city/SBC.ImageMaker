@@ -9,26 +9,26 @@
 </head>
 <body>
   <div id="SBCast_instagram_content">
-    <div id="menu">
+    <div class="menu">
       <form>
-        <label for="url">URL</label>
-        <input type="url" id="url" value="http://example.com/" class="savecontrol">
-        <label for="zoom">Zoom</label>
-        <input id="zoom" class="savecontrol" type="range" min="0.5" max="1" step="0.01">
-        <label for="xadjust">X Adjust</label>
-        <input id="xadjust" class="savecontrol" type="range" min="0" max="100" step="1">
-        <label for="yadjust">Y Adjust</label>
-        <input id="yadjust" class="savecontrol" type="range" min="0" max="100" step="1">
-        <button type="button" id="resetpos">Reset Position</button>
-        <button type="button" id="update">Rendering </button>
-        <button type="button" id="save">Save Image</button>
+        <label for="instagram_url">URL</label>
+        <input type="url" id="instagram_url" value="http://example.com/" class="savecontrol">
+        <label for="instagram_zoom">Zoom</label>
+        <input id="instagram_zoom" class="savecontrol" type="range" min="0.5" max="1" step="0.01">
+        <label for="instagram_xadjust">X Adjust</label>
+        <input id="instagram_xadjust" class="savecontrol" type="range" min="0" max="100" step="1">
+        <label for="instagram_yadjust">Y Adjust</label>
+        <input id="instagram_yadjust" class="savecontrol" type="range" min="0" max="100" step="1">
+        <button type="button" id="instagram_resetpos">Reset Position</button>
+        <button type="button" id="instagram_update">Rendering </button>
+        <button type="button" id="instagram_save">Save Image</button>
       </form>
     </div>
-    <div id="body">
-      <div id="base">
-        <img alt="" src="./res/logo.png" id="logo">
-        <img alt="" src="./res/DropHere.png" id="img">
-        <div id="qr"></div>
+    <div class="body">
+      <div class="base" id="instagram_base">
+        <img alt="" src="./res/logo.png" id="instagram_logo">
+        <img alt="" src="./res/DropHere.png" id="instagram_img" data-role="image">
+        <div id="instagram_qr"></div>
       </div>
     </div>
   </div>

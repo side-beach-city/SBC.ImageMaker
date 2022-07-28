@@ -8,27 +8,27 @@ div#SBCast_instagram_content {
   flex-direction: row;
 }
 
-div#menu, div#body {
+div.menu, div.body {
   padding: 0 8px;
   border-radius: 12px;
 }
 
-div#menu {
+div.menu {
   background: #fea;
   padding: 8px;
 }
 
-div#menu > form > label, div#menu > form > input{
+div.menu label, div.menu input{
   display: block;
 }
 
-div#body {
+div.body {
   margin: 0 10px 0 0;
   background: #fcc;
   width: 100%;
 }
 
-#base{
+#instagram_base{
   position: relative;
   height: 100vh;
   aspect-ratio: 4 / 3;
@@ -37,7 +37,7 @@ div#body {
   overflow: hidden;
 }
 
-#logo{
+#instagram_logo{
   height: 20%;
   position: absolute;
   left: 10px;
@@ -47,7 +47,7 @@ div#body {
   background: white;
   border: 2px double silver;
 }
-#img{
+#instagram_img{
   position: relative;
   top: 50%;
   left: 50%;
@@ -59,7 +59,7 @@ div#body {
   height: 100%;
   object-fit: contain;
 }
-#qr{
+#instagram_qr{
   position: absolute;
   right: 10px;
   bottom: 10px;
