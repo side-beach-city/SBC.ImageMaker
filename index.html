@@ -19,7 +19,7 @@
         <div class="menu">
           <form>
             <label for="instagram_url">URL</label>
-            <input type="url" id="instagram_url" value="http://example.com/" class="savecontrol">
+            <input type="url" id="instagram_url" value="http://example.com/" class="savecontrol displayvalues">
             <label for="instagram_zoom">Zoom</label>
             <input id="instagram_zoom" class="savecontrol" type="range" min="0.5" max="1" step="0.01">
             <label for="instagram_xadjust">X Adjust</label>
@@ -27,7 +27,7 @@
             <label for="instagram_yadjust">Y Adjust</label>
             <input id="instagram_yadjust" class="savecontrol" type="range" min="0" max="100" step="1">
             <button type="button" id="instagram_resetpos">Reset Position</button>
-            <button type="button" id="instagram_update">Rendering </button>
+            <button type="button" data-role="update">Rendering </button>
             <button type="button" id="instagram_save">Save Image</button>
           </form>
         </div>
@@ -42,7 +42,46 @@
     </div>
     <div class="tab_content" id="SBCast_youtube_content">
       <div>
-        
+        <div class="menu">
+          <form>
+            <label for="youtube_number">No</label>
+            <input type="number" id="youtube_number" class="savecontrol displayvalues">
+            <label for="youtube_group_name">団体名</label>
+            <input type="text" id="youtube_group_name" class="savecontrol displayvalues">
+            <label for="youtube_guest_name">名前</label>
+            <input type="text" id="youtube_guest_name" class="savecontrol displayvalues">
+            <label for="youtube_direction">方向</label>
+            <select id="youtube_direction" class="savecontrol displayvalues">
+              <option value="left">左</option>
+              <option value="right">右</option>
+            </select>
+            <label for="youtube_effect">境界エフェクト</label>
+            <select id="youtube_effect" class="savecontrol displayvalues">
+              <option value="fade">フェード</option>
+              <option value="none">なし</option>
+            </select>
+            <label for="youtube_zoom">Zoom</label>
+            <input id="youtube_zoom" class="savecontrol" type="range" min="0.5" max="1" step="0.01">
+            <label for="youtube_xadjust">X Adjust</label>
+            <input id="youtube_xadjust" class="savecontrol" type="range" min="0" max="100" step="1">
+            <label for="youtube_yadjust">Y Adjust</label>
+            <input id="youtube_yadjust" class="savecontrol" type="range" min="0" max="100" step="1">
+            <button type="button" id="youtube_resetpos">Reset Position</button>
+            <button type="button" data-role="update">Rendering </button>
+            <button type="button" id="youtube_save">Save Image</button>
+          </form>
+        </div>
+        <div class="body">
+          <div class="base" id="youtube_base">
+            <div id="youtube_episodenames">
+              <img alt="" src="./res/logo.png" id="youtube_logo">
+              <div id="youtube_d_no">SBCast.#nn</div>
+              <div id="youtube_d_group_name">Group Name</div>
+              <div id="youtube_d_guest_name">Guest Name</div>
+            </div>
+            <img alt="" src="./res/DropHere.png" id="youtube_img" data-role="image">
+          </div>
+        </div>
       </div>
     </div>
   </div>

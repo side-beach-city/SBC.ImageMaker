@@ -64,7 +64,7 @@ div.menu {
   padding: 8px;
 }
 
-div.menu label, div.menu input{
+div.menu label, div.menu input, div.menu select{
   display: block;
 }
 
@@ -74,12 +74,13 @@ div.body {
   width: 100%;
 }
 
-/* #SBCast_instagram_content */
-div#SBCast_instagram_content > div {
+div.tab_content > div {
   display: flex;
   flex-direction: row;
   height: calc(100vh - var(--tabsize) - 3px);
 }
+
+/* #SBCast_instagram_content */
 
 #instagram_base{
   position: relative;
@@ -118,4 +119,15 @@ div#SBCast_instagram_content > div {
   bottom: 10px;
   padding: 8px;
   background-color: white;
+}
+
+/* #SBCast_youtube_content */
+
+#youtube_base{
+  position: relative;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  background: white;
+  margin: auto;
+  overflow: hidden;
 }

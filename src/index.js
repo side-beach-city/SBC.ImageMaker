@@ -2,7 +2,15 @@ const defaultValues = {
   "instagram_url": "http://example.com/",
   "instagram_zoom": 1.0,
   "instagram_xadjust": 50,
-  "instagram_yadjust": 50
+  "instagram_yadjust": 50,
+  "youtube_number": 0,
+  "youtube_group_name": "",
+  "youtube_guest_name": "",
+  "youtube_direction": "left",
+  "youtube_effect": "fade",
+  "youtube_zoom": 1.0,
+  "youtube_xadjust": 50,
+  "youtube_yadjust": 50
 }
 
 
@@ -30,9 +38,7 @@ Array.from(document.getElementsByClassName("base")).forEach((base) => {
   });
 });
 
-document.getElementById("instagram_url").addEventListener("change", (e) => {
-  refresh();
-});
+Array.from(document.getElementsByClassName("displayvalues")).forEach(v => v.addEventListener("change", refresh));
 
 Array.from(document.querySelectorAll("#SBCast_instagram_content input[type=range]")).forEach(e => e.addEventListener("input", refreshzoom));
 
@@ -44,9 +50,7 @@ document.getElementById("instagram_resetpos").addEventListener("click", (e) => {
   refreshzoom();
 });
 
-document.getElementById("instagram_update").addEventListener("click", (e) => {
-  refresh();
-});
+document.querySelectorAll("button[data-role='update']").forEach(v => v.addEventListener("click", refresh));
 
 document.getElementById("instagram_save").addEventListener("click", async (e) => {
   refresh();
@@ -76,4 +80,11 @@ function refresh() {
     width: document.getElementById("instagram_base").clientHeight / 5,
     height: document.getElementById("instagram_base").clientHeight / 5
   });
+
+  const no = document.getElementById("youtube_number").value;
+  const group = document.getElementById("youtube_group_name").value;
+  const guest = document.getElementById("youtube_guest_name").value;
+  document.getElementById("youtube_d_no").textContent = `SBCast. #${('00'+no).slice(-2)}`;
+  document.getElementById("youtube_d_group_name").textContent = group;
+  document.getElementById("youtube_d_guest_name").textContent = guest;
 }
