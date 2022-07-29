@@ -21,6 +21,7 @@ window.addEventListener("load", (e) => {
       localStorage.setItem(e.target.id, e.target.value);
     });
   });
+  refresh();
 });
 
 Array.from(document.getElementsByClassName("base")).forEach((base) => {
