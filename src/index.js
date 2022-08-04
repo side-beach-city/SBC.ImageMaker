@@ -41,7 +41,7 @@ Array.from(document.getElementsByClassName("base")).forEach((base) => {
 
 Array.from(document.getElementsByClassName("displayvalues")).forEach(v => v.addEventListener("change", refresh));
 
-Array.from(document.querySelectorAll("#SBCast_instagram_content input[type=range]")).forEach(e => e.addEventListener("input", refreshzoom));
+Array.from(document.querySelectorAll("input[type=range]")).forEach(e => e.addEventListener("input", refreshzoom));
 
 document.getElementById("instagram_resetpos").addEventListener("click", (e) => {
   Array.from(document.querySelectorAll("#SBCast_instagram_content input[type=range]")).forEach((e) => {
@@ -65,11 +65,13 @@ document.getElementById("instagram_save").addEventListener("click", async (e) =>
   dl.click();
 });
 
-function refreshzoom() {
+function refreshzoom(e) {
+  let base = e.target;
+  while(base.className != "tab_content") base = base.parentNode;
   const param = {};
-  ["zoom", "xadjust", "yadjust"].forEach(v => param[v] = document.getElementById(`instagram_${v}`).value);
+  ["zoom", "xadjust", "yadjust"].forEach(v => param[v] = base.querySelector(`input[id$=${v}`).value);
   console.log(`translate(${param['xadjust'] * -1}%, ${param['yadjust'] * -1}%) scale(${param['zoom']})`);
-  document.getElementById("instagram_img").style.transform = `translate(${param['xadjust'] * -1}%, ${param['yadjust'] * -1}%) scale(${param['zoom']})`;
+  base.querySelector("img[data-role='image']").style.transform = `translate(${param['xadjust'] * -1}%, ${param['yadjust'] * -1}%) scale(${param['zoom']})`;
 }
 
 function refresh() {
