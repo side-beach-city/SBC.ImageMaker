@@ -125,7 +125,7 @@ div.tab_content > div {
 
 #youtube_base{
   position: relative;
-  height: 100%;
+  max-height: 100%;
   aspect-ratio: 16 / 9;
   background: white;
   margin: auto;
@@ -142,7 +142,16 @@ div#youtube_episodenames {
 div#youtube_d_no {
   font-family: 'Aharoni';
   font-size: 36pt;
-  margin-top: 240px;
+}
+
+div#youtube_d > div:nth-child(n + 2) {
+  margin-left: 12px;
+  font-family: "BIZ UDPゴシック";
+}
+
+div#youtube_d {
+  position: absolute;
+  bottom: 50px;
 }
 
 div#youtube_d_group_name {
@@ -151,11 +160,6 @@ div#youtube_d_group_name {
 
 div#youtube_d_guest_name {
   font-size: 28pt;
-}
-
-div#youtube_episodenames div:nth-child(n + 3) {
-  margin-left: 12px;
-  font-family: "BIZ UDPゴシック";
 }
 
 div#youtube_img_container {
