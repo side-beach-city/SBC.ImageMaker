@@ -43,31 +43,32 @@ Array.from(document.getElementsByClassName("displayvalues")).forEach(v => v.addE
 
 Array.from(document.querySelectorAll("input[type=range]")).forEach(e => e.addEventListener("input", refreshzoom));
 
-document.getElementById("instagram_resetpos").addEventListener("click", (e) => {
-  Array.from(document.querySelectorAll("#SBCast_instagram_content input[type=range]")).forEach((e) => {
+document.querySelectorAll("button[data-role='resetpos']").forEach(v => v.addEventListener("click", async (e) => {
+  const base = getBaseNode(e.target);
+  Array.from(base.querySelectorAll("input[type=range]")).forEach((e) => {
     e.value = defaultValues[e.id];
     localStorage.setItem(e.id, e.value);
   });
-  refreshzoom();
-});
+  refreshzoom(e);
+}));
 
 document.querySelectorAll("button[data-role='update']").forEach(v => v.addEventListener("click", refresh));
 
-document.getElementById("instagram_save").addEventListener("click", async (e) => {
+document.querySelectorAll("button[data-role='saveimage']").forEach(v => v.addEventListener("click", async (e) => {
   refresh();
+  const base = getBaseNode(e.target);
+  const imgbase = base.querySelector(".base");
   const dl = document.createElement("a");
-  const b = document.getElementById("instagram_base");
-  dl.href = await domtoimage.toPng(b, {
-    width: b.clientWidth,
-    height: b.clientHeight
+  dl.href = await domtoimage.toPng(imgbase, {
+    width: imgbase.clientWidth,
+    height: imgbase.clientHeight
   });
-  dl.download="qrimage.png";
+  dl.download=base.dataset.savename;
   dl.click();
-});
+}));
 
 function refreshzoom(e) {
-  let base = e.target;
-  while(base.className != "tab_content") base = base.parentNode;
+  const base = getBaseNode(e.target);
   const param = {};
   ["zoom", "xadjust", "yadjust"].forEach(v => param[v] = base.querySelector(`input[id$=${v}`).value);
   console.log(`translate(${param['xadjust'] * -1}%, ${param['yadjust'] * -1}%) scale(${param['zoom']})`);
@@ -90,4 +91,10 @@ function refresh() {
   document.getElementById("youtube_d_no").textContent = `SBCast. #${('00'+no).slice(-2)}`;
   document.getElementById("youtube_d_group_name").textContent = group;
   document.getElementById("youtube_d_guest_name").textContent = guest;
+}
+
+function getBaseNode(node) {
+  let base = node;
+  while(base.className != "tab_content") base = base.parentNode;
+  return base;
 }

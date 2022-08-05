@@ -15,7 +15,7 @@
     <input id="SBCast_youtube" type="radio" name="tab_item">
     <label class="tab_item" for="SBCast_youtube">YouTube用画像</label>
     
-    <div class="tab_content" id="SBCast_instagram_content">
+    <div class="tab_content" id="SBCast_instagram_content" data-savename="qrimage.png">
       <div>
         <div class="menu">
           <form>
@@ -27,9 +27,9 @@
             <input id="instagram_xadjust" class="savecontrol" type="range" min="0" max="100" step="1">
             <label for="instagram_yadjust">Y Adjust</label>
             <input id="instagram_yadjust" class="savecontrol" type="range" min="0" max="100" step="1">
-            <button type="button" id="instagram_resetpos">Reset Position</button>
+            <button type="button" data-role="resetpos">Reset Position</button>
             <button type="button" data-role="update">Rendering </button>
-            <button type="button" id="instagram_save">Save Image</button>
+            <button type="button" data-role="saveimage">Save Image</button>
           </form>
         </div>
         <div class="body">
@@ -41,7 +41,7 @@
         </div>
       </div>
     </div>
-    <div class="tab_content" id="SBCast_youtube_content">
+    <div class="tab_content" id="SBCast_youtube_content" data-savename="foryoutube.png">
       <div>
         <div class="menu">
           <form>
@@ -67,9 +67,9 @@
             <input id="youtube_xadjust" class="savecontrol" type="range" min="0" max="100" step="1">
             <label for="youtube_yadjust">Y Adjust</label>
             <input id="youtube_yadjust" class="savecontrol" type="range" min="0" max="100" step="1">
-            <button type="button" id="youtube_resetpos">Reset Position</button>
+            <button type="button" data-role="resetpos">Reset Position</button>
             <button type="button" data-role="update">Rendering </button>
-            <button type="button" id="youtube_save">Save Image</button>
+            <button type="button" data-role="saveimage">Save Image</button>
           </form>
         </div>
         <div class="body">
