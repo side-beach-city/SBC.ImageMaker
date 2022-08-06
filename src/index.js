@@ -75,7 +75,6 @@ function refreshzoom(e) {
   const base = getBaseNode(e.target);
   const param = {};
   ["zoom", "xadjust", "yadjust"].forEach(v => param[v] = base.querySelector(`input[id$=${v}`).value);
-  console.log(`translate(${param['xadjust'] * -1}%, ${param['yadjust'] * -1}%) scale(${param['zoom']})`);
   base.querySelector("img[data-role='image']").style.transform = `translate(${param['xadjust'] * -1}%, ${param['yadjust'] * -1}%) scale(${param['zoom']})`;
 }
 
