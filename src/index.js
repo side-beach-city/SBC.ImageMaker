@@ -88,6 +88,17 @@ function refresh() {
   const no = document.getElementById("youtube_number").value;
   const group = document.getElementById("youtube_group_name").value;
   const guest = document.getElementById("youtube_guest_name").value;
+  const direction = document.getElementById("youtube_direction").value == 'left';
+  let shadow = "";
+  switch (document.getElementById("youtube_effect").value) {
+    case "fade":
+      shadow = `${124 * (direction ? 1 : -1)}px 0px 53px white`;
+      break;
+    default:
+      break;
+  }
+  document.getElementById("youtube_episodenames").style.boxShadow = shadow;
+  document.getElementById("youtube_base").style.flexDirection = direction ? "row" : "row-reverse";
   document.getElementById("youtube_d_no").textContent = `SBCast. #${('00'+no).slice(-2)}`;
   document.getElementById("youtube_d_group_name").textContent = group;
   document.getElementById("youtube_d_guest_name").textContent = guest;

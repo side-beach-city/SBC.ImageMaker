@@ -135,8 +135,10 @@ div.tab_content > div {
 
 div#youtube_episodenames {
   line-height: 1.4;
-  margin: 5px 30px;
+  margin: 0px 10px;
+  padding: 5px 20px;
   width: 332px;
+  z-index: 1;
 }
 
 div#youtube_d_no {
