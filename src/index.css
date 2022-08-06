@@ -140,10 +140,11 @@ img#youtube_logo {
 
 div#youtube_episodenames {
   line-height: 1.4;
-  margin: -20px 10px;
+  margin: -80px 10px;
   padding: 5px 20px;
   width: 332px;
   z-index: 3;
+  background-color: white;
 }
 
 div#youtube_d_no {
