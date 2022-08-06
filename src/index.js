@@ -7,6 +7,7 @@ const defaultValues = {
   "youtube_group_name": "",
   "youtube_guest_name": "",
   "youtube_direction": "left",
+  "youtube_background": "none",
   "youtube_effect": "fade",
   "youtube_zoom": 1.0,
   "youtube_xadjust": 50,
@@ -34,8 +35,11 @@ Array.from(document.getElementsByClassName("base")).forEach((base) => {
     e.stopPropagation();
     e.preventDefault();
 
-    let file = e.dataTransfer.files[0];
-    base.querySelector("img[data-role='image']").src = URL.createObjectURL(file);
+    const url= URL.createObjectURL(e.dataTransfer.files[0]);
+    if(base.querySelector("div[data-role='background']")){
+      base.querySelector("div[data-role='background']").style.backgroundImage = `url(${url})`;
+    }
+    base.querySelector("img[data-role='image']").src = url
   });
 });
 
@@ -90,6 +94,7 @@ function refresh() {
   const guest = document.getElementById("youtube_guest_name").value;
   const direction = document.getElementById("youtube_direction").value == 'left';
   let shadow = "";
+  let backop = "";
   switch (document.getElementById("youtube_effect").value) {
     case "fade":
       shadow = `${124 * (direction ? 1 : -1)}px 0px 53px white`;
@@ -97,8 +102,19 @@ function refresh() {
     default:
       break;
   }
+  switch (document.getElementById("youtube_background").value) {
+    case "thin":
+      backop = "0.8";
+      break;
+    case "strong":
+      backop = "0.4";
+      break;
+    default:
+      break;
+  }
   document.getElementById("youtube_episodenames").style.boxShadow = shadow;
   document.getElementById("youtube_base").style.flexDirection = direction ? "row" : "row-reverse";
+  document.getElementById("youtube_img_filter").style.opacity = backop;
   document.getElementById("youtube_d_no").textContent = `SBCast. #${('00'+no).slice(-2)}`;
   document.getElementById("youtube_d_group_name").textContent = group;
   document.getElementById("youtube_d_guest_name").textContent = guest;

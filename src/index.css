@@ -133,12 +133,17 @@ div.tab_content > div {
   display: flex;
 }
 
+img#youtube_logo {
+  position: absolute;
+  top: 4px;
+}
+
 div#youtube_episodenames {
   line-height: 1.4;
-  margin: 0px 10px;
+  margin: -20px 10px;
   padding: 5px 20px;
   width: 332px;
-  z-index: 1;
+  z-index: 3;
 }
 
 div#youtube_d_no {
@@ -166,6 +171,19 @@ div#youtube_d_guest_name {
 
 div#youtube_img_container {
   flex: 1;
+  background-position: center;
+}
+
+div#youtube_img_filter {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: white;
+  z-index: 1;
 }
 
 img#youtube_img {
@@ -179,4 +197,5 @@ img#youtube_img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  z-index: 2;
 }

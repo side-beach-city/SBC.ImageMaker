@@ -56,6 +56,12 @@
               <option value="left">左</option>
               <option value="right">右</option>
             </select>
+            <label for="youtube_background">背景</label>
+            <select id="youtube_background" class="savecontrol displayvalues">
+              <option value="none">なし</option>
+              <option value="thin">薄く表示</option>
+              <option value="strong">濃いめに表示</option>
+            </select>
             <label for="youtube_effect">境界エフェクト</label>
             <select id="youtube_effect" class="savecontrol displayvalues">
               <option value="fade">フェード</option>
@@ -82,8 +88,9 @@
                 <div id="youtube_d_guest_name">Guest Name</div>
               </div>
             </div>
-            <div id="youtube_img_container">
+            <div id="youtube_img_container" data-role="background">
               <img alt="" src="./res/DropHere.png" id="youtube_img" data-role="image">
+              <div id="youtube_img_filter"></div>
             </div>
           </div>
         </div>
