@@ -2,7 +2,16 @@ const defaultValues = {
   "instagram_url": "http://example.com/",
   "instagram_zoom": 1.0,
   "instagram_xadjust": 50,
-  "instagram_yadjust": 50
+  "instagram_yadjust": 50,
+  "youtube_number": 0,
+  "youtube_group_name": "",
+  "youtube_guest_name": "",
+  "youtube_direction": "left",
+  "youtube_background": "none",
+  "youtube_effect": "fade",
+  "youtube_zoom": 1.0,
+  "youtube_xadjust": 50,
+  "youtube_yadjust": 50
 }
 
 
@@ -13,6 +22,7 @@ window.addEventListener("load", (e) => {
       localStorage.setItem(e.target.id, e.target.value);
     });
   });
+  refresh();
 });
 
 Array.from(document.getElementsByClassName("base")).forEach((base) => {
@@ -25,46 +35,48 @@ Array.from(document.getElementsByClassName("base")).forEach((base) => {
     e.stopPropagation();
     e.preventDefault();
 
-    let file = e.dataTransfer.files[0];
-    base.querySelector("img[data-role='image']").src = URL.createObjectURL(file);
+    const url= URL.createObjectURL(e.dataTransfer.files[0]);
+    if(base.querySelector("div[data-role='background']")){
+      base.querySelector("div[data-role='background']").style.backgroundImage = `url(${url})`;
+    }
+    base.querySelector("img[data-role='image']").src = url
   });
 });
 
-document.getElementById("instagram_url").addEventListener("change", (e) => {
-  refresh();
-});
+Array.from(document.getElementsByClassName("displayvalues")).forEach(v => v.addEventListener("change", refresh));
 
-Array.from(document.querySelectorAll("#SBCast_instagram_content input[type=range]")).forEach(e => e.addEventListener("input", refreshzoom));
+Array.from(document.querySelectorAll("input[type=range]")).forEach(e => e.addEventListener("input", refreshzoom));
 
-document.getElementById("instagram_resetpos").addEventListener("click", (e) => {
-  Array.from(document.querySelectorAll("#SBCast_instagram_content input[type=range]")).forEach((e) => {
+document.querySelectorAll("button[data-role='resetpos']").forEach(v => v.addEventListener("click", async (e) => {
+  const base = getBaseNode(e.target);
+  Array.from(base.querySelectorAll("input[type=range]")).forEach((e) => {
     e.value = defaultValues[e.id];
     localStorage.setItem(e.id, e.value);
   });
-  refreshzoom();
-});
+  refreshzoom(e);
+}));
 
-document.getElementById("instagram_update").addEventListener("click", (e) => {
-  refresh();
-});
+document.querySelectorAll("button[data-role='update']").forEach(v => v.addEventListener("click", refresh));
 
-document.getElementById("instagram_save").addEventListener("click", async (e) => {
+document.querySelectorAll("button[data-role='saveimage']").forEach(v => v.addEventListener("click", async (e) => {
   refresh();
+  const base = getBaseNode(e.target);
+  const imgbase = base.querySelector(".base");
   const dl = document.createElement("a");
-  const b = document.getElementById("instagram_base");
-  dl.href = await domtoimage.toPng(b, {
-    width: b.clientWidth,
-    height: b.clientHeight
+  dl.href = await domtoimage.toPng(imgbase, {
+    width: imgbase.clientWidth,
+    height: imgbase.clientHeight
   });
-  dl.download="qrimage.png";
+  dl.download=base.dataset.savename;
   dl.click();
-});
+}));
 
-function refreshzoom() {
+function refreshzoom(e) {
+  const base = getBaseNode(e.target);
   const param = {};
-  ["zoom", "xadjust", "yadjust"].forEach(v => param[v] = document.getElementById(`instagram_${v}`).value);
+  ["zoom", "xadjust", "yadjust"].forEach(v => param[v] = base.querySelector(`input[id$=${v}`).value);
   console.log(`translate(${param['xadjust'] * -1}%, ${param['yadjust'] * -1}%) scale(${param['zoom']})`);
-  document.getElementById("instagram_img").style.transform = `translate(${param['xadjust'] * -1}%, ${param['yadjust'] * -1}%) scale(${param['zoom']})`;
+  base.querySelector("img[data-role='image']").style.transform = `translate(${param['xadjust'] * -1}%, ${param['yadjust'] * -1}%) scale(${param['zoom']})`;
 }
 
 function refresh() {
@@ -76,4 +88,40 @@ function refresh() {
     width: document.getElementById("instagram_base").clientHeight / 5,
     height: document.getElementById("instagram_base").clientHeight / 5
   });
+
+  const no = document.getElementById("youtube_number").value;
+  const group = document.getElementById("youtube_group_name").value;
+  const guest = document.getElementById("youtube_guest_name").value;
+  const direction = document.getElementById("youtube_direction").value == 'left';
+  let shadow = "";
+  let backop = "";
+  switch (document.getElementById("youtube_effect").value) {
+    case "fade":
+      shadow = `${124 * (direction ? 1 : -1)}px 0px 53px white`;
+      break;
+    default:
+      break;
+  }
+  switch (document.getElementById("youtube_background").value) {
+    case "thin":
+      backop = "0.8";
+      break;
+    case "strong":
+      backop = "0.4";
+      break;
+    default:
+      break;
+  }
+  document.getElementById("youtube_episodenames").style.boxShadow = shadow;
+  document.getElementById("youtube_base").style.flexDirection = direction ? "row" : "row-reverse";
+  document.getElementById("youtube_img_filter").style.opacity = backop;
+  document.getElementById("youtube_d_no").textContent = `SBCast. #${('00'+no).slice(-2)}`;
+  document.getElementById("youtube_d_group_name").textContent = group;
+  document.getElementById("youtube_d_guest_name").textContent = guest;
+}
+
+function getBaseNode(node) {
+  let base = node;
+  while(base.className != "tab_content") base = base.parentNode;
+  return base;
 }

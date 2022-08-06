@@ -1,13 +1,59 @@
+:root {
+  --tabsize: 24px;
+}
+
 body{
   margin: 0;
   overflow: hidden;
 }
 
-div#SBCast_instagram_content {
-  display: flex;
-  flex-direction: row;
+.tabs {
+  margin-top: var(--tabsize);
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  margin: 0 auto;
 }
 
+/* tabs */
+.tab_item {
+  width: calc(100% / 2);
+  height: var(--tabsize);
+  border-bottom: 3px solid #5ab4bd;
+  background-color: #d9d9d9;
+  line-height: var(--tabsize);
+  font-size: 16px;
+  text-align: center;
+  color: #565656;
+  display: block;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+.tab_item:hover {
+  opacity: 0.75;
+}
+input[name="tab_item"] {
+  display: none;
+}
+.tab_content {
+  display: none;
+  clear: both;
+  overflow: hidden;
+}
+
+#SBCast_instagram:checked ~ #SBCast_instagram_content,
+#SBCast_youtube:checked ~ #SBCast_youtube_content {
+  display: block;
+}
+
+.tabs input:checked + .tab_item {
+  background-color: #5ab4bd;
+  color: #fff;
+}
+
+/* Content common */
 div.menu, div.body {
   padding: 0 8px;
   border-radius: 12px;
@@ -18,7 +64,7 @@ div.menu {
   padding: 8px;
 }
 
-div.menu label, div.menu input{
+div.menu label, div.menu input, div.menu select{
   display: block;
 }
 
@@ -28,9 +74,17 @@ div.body {
   width: 100%;
 }
 
+div.tab_content > div {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - var(--tabsize) - 3px);
+}
+
+/* #SBCast_instagram_content */
+
 #instagram_base{
   position: relative;
-  height: 100vh;
+  height: 100%;
   aspect-ratio: 4 / 3;
   background: white;
   margin: auto;
@@ -65,4 +119,84 @@ div.body {
   bottom: 10px;
   padding: 8px;
   background-color: white;
+}
+
+/* #SBCast_youtube_content */
+
+#youtube_base{
+  position: relative;
+  max-height: 100%;
+  aspect-ratio: 16 / 9;
+  background: white;
+  margin: auto;
+  overflow: hidden;
+  display: flex;
+}
+
+img#youtube_logo {
+  position: absolute;
+  top: 4px;
+}
+
+div#youtube_episodenames {
+  line-height: 1.4;
+  margin: -80px 10px;
+  padding: 5px 20px;
+  width: 332px;
+  z-index: 3;
+  background-color: white;
+}
+
+div#youtube_d_no {
+  font-family: 'Aharoni';
+  font-size: 36pt;
+}
+
+div#youtube_d > div:nth-child(n + 2) {
+  margin-left: 12px;
+  font-family: "BIZ UDPゴシック";
+}
+
+div#youtube_d {
+  position: absolute;
+  bottom: 50px;
+}
+
+div#youtube_d_group_name {
+  font-size: 18pt;
+}
+
+div#youtube_d_guest_name {
+  font-size: 28pt;
+}
+
+div#youtube_img_container {
+  flex: 1;
+  background-position: center;
+}
+
+div#youtube_img_filter {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: white;
+  z-index: 1;
+}
+
+img#youtube_img {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  max-width: 100%;
+  max-height: 100%;
+  transform: translate(-50%, -50%);
+  transition-duration: 100ms;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 2;
 }
