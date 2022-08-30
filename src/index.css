@@ -167,6 +167,9 @@ div#youtube_d > div:nth-child(n + 2) {
 div#youtube_d {
   position: absolute;
   bottom: 50px;
+  width: 344px;
+  text-indent: -20px;
+  margin-left: 20px;
 }
 
 div#youtube_d_group_name {
